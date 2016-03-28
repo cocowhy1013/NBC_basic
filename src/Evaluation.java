@@ -88,6 +88,58 @@ public class Evaluation {
         return result;
 
     }
+    public double[] testWithData2(){
+        boolean[] isCategory_train = dataset.getIsCategory();
+        double[][] features_train = dataset.getFeatures();
+        double[] labels_train = dataset.getLabels();
+
+        double[][] features_test = this.tesfeatures;//testset.getFeatures;
+        double[] labels_test = this.testlabel;//testset.getLabels;
+        double[] measures = new double[1];
+        double[] result = new double[labels_test.length];
+        boolean isClassification = isCategory_train[isCategory_train.length - 1];
+        try {
+
+            NaiveBayes_Origin c  = (NaiveBayes_Origin) Class.forName("" + clsName).newInstance();
+            c.train(isCategory_train, features_train, labels_train);
+
+            double error = 0;
+            for (int j = 0; j < labels_test.length; j++) {
+                double prediction = c.predict(features_test[j]);
+
+                if (isClassification) {
+                    if (prediction != labels_test[j]) {
+                        error = error + 1;
+                    }
+                } else {
+                    error = error + (prediction - labels_test[j]) * (prediction - labels_test[j]);
+                }
+                //System.out.println("result "+j+":"+prediction);
+                result[j] = prediction;
+            }
+
+            if (isClassification) {
+                measures[0] = 1 - error / labels_test.length;//accuracy = 1 - error
+            } else {
+                measures[0] = Math.sqrt(error / labels_test.length);
+            }
+
+//		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
+        } catch ( Exception ex) {
+            // TODO Auto-generated catch block
+            Logger.getLogger(Evaluation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        double[] mean_std = mean_std(measures);
+        if (isClassification) {
+            accMean = mean_std[0];
+            accStd = mean_std[1];
+        } else {
+            rmseMean = mean_std[0];
+            rmseStd = mean_std[1];
+        }
+        return result;
+
+    }
     public void crossValidation() {
         int fold = 10;
         Random random = new Random(2013);
@@ -142,7 +194,7 @@ public class Evaluation {
                     }
                 }
 
-                NaiveBayes c = (NaiveBayes) Class.forName("auxiliary." + clsName).newInstance();
+                NaiveBayes_Origin c = (NaiveBayes_Origin) Class.forName("auxiliary." + clsName).newInstance();
                 c.train(isCategory, trainFeatures, trainLabels);
 
                 double error = 0;

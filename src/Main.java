@@ -54,8 +54,8 @@ public class Main {
 	       
 	        // DataSet dataset2 = new DataSet(path+"test.txt");
 	        // conduct 10-cv 
-	        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes");
-	        result.add(eva.testWithData()[0]);
+	        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes_Origin");
+	        result.add(eva.testWithData2()[0]);
 	        
 	        //eva.crossValidation();
 	        // print mean and standard deviation of accuracy
@@ -94,8 +94,8 @@ public class Main {
        
         // DataSet dataset2 = new DataSet(path+"test.txt");
         // conduct 10-cv 
-        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes");
-        double[] result = eva.testWithData();
+        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes_Origin");
+        double[] result = eva.testWithData2();
         return result[0];
         //eva.crossValidation();
 	}
