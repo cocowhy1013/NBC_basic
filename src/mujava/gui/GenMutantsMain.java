@@ -6,9 +6,10 @@
 
 package mujava.gui;
 
-import javax.swing.*;
-import java.awt.event.*;
 import mujava.MutationSystem;
+
+import javax.swing.*;
+import java.awt.event.WindowEvent;
 
 /**
  * <p>
