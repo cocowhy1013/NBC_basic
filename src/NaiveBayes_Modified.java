@@ -66,7 +66,9 @@ public class NaiveBayes_Modified {//dumb NBC
             possibility[i] = isLabel[i]/labels.length;
             //System.out.println("possibility:"+possibility[i]);
             for(int j=0;j<isFeatureForLabel[i].length;j++){
-                possibility[i] = possibility[i]*(isFeatureForLabel[i][j])/isLabel[i];
+                //possibility[i] = possibility[i]*(isFeatureForLabel[i][j])/isLabel[i];
+                possibility[i] = possibility[i]/(isFeatureForLabel[i][j])/isLabel[i];
+
                 //System.out.println("isFeatureForLabel:"+(isFeatureForLabel[i][j])/isLabel[i]);
             }
             //System.out.println("Label:"+labelList.get(i)+" possibility:"+possibility[i]);
@@ -77,7 +79,7 @@ public class NaiveBayes_Modified {//dumb NBC
             if(possibility[i]>=max_Value){
                 max_Label = labelList.get(i);
                 max_Value = possibility[i];
-                System.out.println(possibility[i]);
+                //System.out.println(possibility[i]);
             }
         }
         return max_Label;

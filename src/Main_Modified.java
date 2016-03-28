@@ -115,24 +115,24 @@ public class Main_Modified {
         return arrayFromArrayList(result);
 
     }
-    public static void main(String[] args) throws IOException{
+    public static void main(String [] args) throws IOException{
 
 
-        String resultFile = "dataset\\1train_result.txt";
-        String trainFile = "dataset\\1train.txt";
-        String testFile = "dataset\\1test.txt";
+        String resultFile = "dataset\\1\\1train_result.txt";
+        String trainFile = "dataset\\1\\1train.txt";
+        String testFile = "dataset\\1\\1test.txt";
         //System.out.println(Arrays.toString(processMain(trainFile, testFile)));
         PrintWriter pw = new PrintWriter(new File(resultFile));
 
-        int modify_times = 10;
+        int modify_times = 100;
         for(int time = 0; time < modify_times; time ++){
             double[] result1 = modifyMain(trainFile,testFile,0.9,time);
-            System.out.println("length1:"+result1.length);
+            //System.out.println("length1:"+result1.length);
             for(int i=0;i<result1.length;i++)
                 ;//System.out.println(result1[i]);
 
             double [] result2 = processMain(trainFile,testFile);
-            System.out.println("length2:"+result2.length);
+            //System.out.println("length2:"+result2.length);
             for(int i=0;i<result2.length;i++)
                 ;//System.out.println(result2[i]);
 
@@ -146,8 +146,9 @@ public class Main_Modified {
                         break;
                     }
                 }
-                System.out.println("Does it satisfy MR? --- "+!isViolated);
-                System.out.println("Continue? --- "+!isViolated);
+                //System.out.println("Does it satisfy MR? --- "+!isViolated);
+                //System.out.println("Continue? --- "+!isViolated);
+                System.out.println("file:modify_"+time+" Result: "+!isViolated);
                 pw.println("file:modify_"+time+" Result: "+!isViolated);
             }
         }
