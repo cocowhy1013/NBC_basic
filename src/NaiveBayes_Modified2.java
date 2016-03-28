@@ -11,12 +11,14 @@ import java.util.ArrayList;
  *
  * @author Michael Kong
  */
-public class NaiveBayes_Modified {//dumb NBC
+public class NaiveBayes_Modified2 {//dumb NBC
 
     boolean[] isCategory;
     double[][] features;
     double[] labels;
-    public NaiveBayes_Modified() {
+    ArrayList<Double> labelList = new ArrayList<Double>();
+
+    public NaiveBayes_Modified2() {
     }
 
     /**
@@ -27,6 +29,13 @@ public class NaiveBayes_Modified {//dumb NBC
         this.isCategory = isCategory;
         this.features = features;
         this.labels = labels;
+        for(int i=0;i<labels.length;i++) {
+            if (!labelList.contains(labels[i])) {
+                labelList.add(labels[i]);
+                //System.out.println("add label: "+labels[i]);
+            }
+        }
+        //for(int i=0;i<)
     }
 
     /**
@@ -34,13 +43,7 @@ public class NaiveBayes_Modified {//dumb NBC
      * 4.返回使得Yi*Xi*...概率最大的那个label的取值
      */
     public double predict(double[] testfeatures) {
-        ArrayList<Double> labelList = new ArrayList<Double>();
-        for(int i=0;i<labels.length;i++) {
-            if (!labelList.contains(labels[i])) {
-                labelList.add(labels[i]);
-                //System.out.println("add label: "+labels[i]);
-            }
-        }
+
         double[] possibility = new double[labelList.size()];
         //for(int i=0;i<possibility.length;i++)
         //    possibility[i] = 1E-10;
@@ -83,7 +86,7 @@ public class NaiveBayes_Modified {//dumb NBC
         return max_Label;
     }
     public static void main(String [] args){
-        NaiveBayes_Modified modified = new NaiveBayes_Modified();
+        NaiveBayes_Modified2 modified = new NaiveBayes_Modified2();
         double[][] features = {{1,1},{2,2},{1,4},{3,3},{1,2},{1,3},{2,3},{1,4},{2,4},{3,2}};
         double[] label = {0,1,2,0,0,2,1,1,0,1};
         boolean[] isCategory = {true,true,true,true,true,true};

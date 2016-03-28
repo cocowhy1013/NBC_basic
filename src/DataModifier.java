@@ -143,6 +143,6 @@ public class DataModifier {
 		double[] label = {0};
 		//1,2,3,4,5,6,7,0
 		DataModifier modifier = new DataModifier();
-		modifier.modifyRandom("E:\\Workspace Mars\\naivebayes\\dataset\\modify.txt",attribute, label, 0.1,1);
+		modifier.modifyRandom("train.txt",attribute, label, 0.1,1);
 	}
 }

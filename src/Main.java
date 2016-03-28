@@ -3,8 +3,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //import auxiliary.DataSet;
@@ -54,8 +54,8 @@ public class Main {
 	       
 	        // DataSet dataset2 = new DataSet(path+"test.txt");
 	        // conduct 10-cv 
-	        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes_Origin");
-	        result.add(eva.testWithData2()[0]);
+	        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes");
+	        result.add(eva.testWithData()[0]);
 	        
 	        //eva.crossValidation();
 	        // print mean and standard deviation of accuracy
@@ -94,8 +94,8 @@ public class Main {
        
         // DataSet dataset2 = new DataSet(path+"test.txt");
         // conduct 10-cv 
-        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes_Origin");
-        double[] result = eva.testWithData2();
+        Evaluation eva = new Evaluation(dataset,features,labels, "NaiveBayes");
+        double[] result = eva.testWithData();
         return result[0];
         //eva.crossValidation();
 	}
@@ -120,7 +120,8 @@ public class Main {
 		String resultFile = "dataset\\1\\result\\1train_result.txt";
 		String trainFile = "dataset\\1\\1train.txt";
 		String testFile = "dataset\\1\\1test.txt";
-		PrintWriter pw = new PrintWriter(new File(resultFile));
+		System.out.println(Arrays.toString(processMain(trainFile, testFile)));
+		/*PrintWriter pw = new PrintWriter(new File(resultFile));
 		
 		int modify_times = 10;
 		for(int time = 0; time < modify_times; time ++){
@@ -153,6 +154,7 @@ public class Main {
 		System.out.println("Finish! ");
 		//processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
 		//double a = processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
-		//System.out.println(a);
+		//System.out.println(a);*/
+
 	}
 }

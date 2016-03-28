@@ -19,6 +19,7 @@ public class NaiveBayes {//extends Classifier {
     ArrayList<Float>lblProba=new ArrayList<Float>();//存储对应的label的概率
     //CountProbility countlblPro;
     /*@ClassListBasedLabel是将训练数组按照 label的顺序来分类存储*/
+
     boolean []isCatory;
     double[][]features;
     private double[]labels;
@@ -36,6 +37,9 @@ public class NaiveBayes {//extends Classifier {
     public void train(boolean[] isCategory, double[][] features, double[] labels){
         isClassfication=isCategory;
         //countlblPro=new CountProbility(isCategory,features,labels);
+        this.isCatory=isCategory;
+        this.features=features;
+        this.labels=labels;
         getlblClass(lblClass, lblCount, lblProba);
         ArrayList<ArrayList<Double>> trainingList=UnionFeaLbl(features, labels); //union the features[][] and labels[]
         ClassListBasedLabel=getClassListBasedLabel(lblClass, trainingList);
@@ -158,11 +162,20 @@ public class NaiveBayes {//extends Classifier {
     public ArrayList<ArrayList<ArrayList<Double>>> getClassListBasedLabel (ArrayList <Double>lblClass,ArrayList<ArrayList<Double>>trainingList)
     {
         ArrayList<ArrayList<ArrayList<Double>>> ClassListBasedLabel=new ArrayList<ArrayList<ArrayList<Double>>> () ;
-        for(double num:lblClass)
+        /*for(double num:lblClass)
         {
             ArrayList<ArrayList<Double>> elements=new ArrayList<ArrayList<Double>>();
             for(ArrayList<Double>element:trainingList)
             {
+                if(element.get(element.size()-1).equals(num))
+                    elements.add(element);
+            }
+            ClassListBasedLabel.add(elements);
+        }*/
+        for(double num = 0;num<lblClass.size();num++){
+            ArrayList<ArrayList<Double>> elements=new ArrayList<ArrayList<Double>>();
+            for(int i=0;i<trainingList.size();i++){
+                ArrayList<Double>element = trainingList.get(i);
                 if(element.get(element.size()-1).equals(num))
                     elements.add(element);
             }
