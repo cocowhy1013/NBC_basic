@@ -118,7 +118,7 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		
 		String resultFile = "dataset\\1\\result\\1train_result.txt";
-		String trainFile = "dataset\\1\\1train.txt";
+		String trainFile = "dataset\\1\\1train.txt"; 
 		String testFile = "dataset\\1\\1test.txt";
 		System.out.println(Arrays.toString(processMain(trainFile, testFile)));
 		/*PrintWriter pw = new PrintWriter(new File(resultFile));
