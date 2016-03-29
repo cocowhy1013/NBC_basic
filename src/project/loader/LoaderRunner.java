@@ -49,11 +49,12 @@ public class LoaderRunner {
         TestLoader tL1 = new TestLoader();
         //tL.LoaderMutantClass(test_root,"Test");
         //int[] param = {0};
-        tL1.LoaderMutantClass2(test_root, test_filename,0,1000);
+        tL1.LoaderMutantClass2(test_root, test_filename,0,500);
         //FileUtil.backSystemOut();
         //FileUtil.deleteFileAndFolder(test_path);
         long t2 = new Date().getTime();
         long time_offset = t2 - t1;
+        time_offset = 370236;
         System.out.println("Time offset: " + (t2 - t1));
         System.out.println(file_names.length + file_names[0]);
 
@@ -72,7 +73,12 @@ public class LoaderRunner {
             number++;
             System.out.println(entry.getValue());
             System.out
+                    .println("number:"+number);
+            System.out
                     .println("=============================================2");
+
+            if(number>=14||number<=9)
+                continue;
             FileUtil.deleteFolderContent(test_root);
             for (int i = 0; i < file_names.length; i++) {
                 if(file_names[i].compareTo(name1)!=0) {

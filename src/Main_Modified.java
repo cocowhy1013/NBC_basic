@@ -118,10 +118,10 @@ public class Main_Modified {
     public static void test(int k,int sumtime){
 
 
-        String resultFile = "dataset\\1\\1train_result_"+k+".txt";
-        String trainFile = "dataset\\1\\1train.txt";
-        String testFile = "dataset\\1\\1test.txt";
-        String root = "dataset\\1\\";
+        String resultFile = "dataset\\2\\2train_result_"+k+".txt";
+        String trainFile = "dataset\\2\\2train.txt";
+        String testFile = "dataset\\2\\2test.txt";
+        String root = "dataset\\2\\";
 
 
         //System.out.println(Arrays.toString(processMain(trainFile, testFile)));
@@ -131,7 +131,7 @@ public class Main_Modified {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        boolean isViolated = false;
         int modify_times = sumtime;
         for(int time = 0; time < modify_times; time ++){
             double[] result1 = new double[0];
@@ -154,7 +154,7 @@ public class Main_Modified {
             for(int i=0;i<result2.length;i++)
                 ;//System.out.println(result2[i]);
 
-            boolean isViolated = false;
+            isViolated = false;
             if(result1.length!=result2.length)
                 ;//System.out.println("Label length does not match!");
             else {
@@ -167,13 +167,24 @@ public class Main_Modified {
                 //System.out.println("Does it satisfy MR? --- "+!isViolated);
                 //System.out.println("Continue? --- "+!isViolated);
                 //System.out.println("file:modify_"+time+" Result: "+!isViolated);
-               // if(!isViolated)
+                if(isViolated)
                     System.out.println("file:"+resultFile+" Result: "+!isViolated);
                 pw.println("file:modify_"+time+" Result: "+!isViolated);
-    }
-}
+                }
+            if(!isViolated){
+                File file = new File("dataset\\2\\2train_modify"+time+"_"+k+".txt");
+                if(file.exists())
+                    file.delete();
+                    ;//System.out.println("Fail to delete "+file.getName());
+            }
+        }
         pw.close();
-        System.out.println("Finish! ");
+        /*if(!isViolated){
+            File f = new File(resultFile);
+            if(!f.delete())
+                System.out.println("Wrong in deleting result files");
+        }
+        System.out.println("Finish! ");*/
         //processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
         //double a = processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
         //System.out.println(a);
