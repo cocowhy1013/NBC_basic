@@ -157,7 +157,7 @@ public class RunMuJava {
 		 */
 		TestLoader tL2 = new TestLoader();
 		// tL.LoaderMutantClass(test_root,"Test");
-		tL2.LoaderMutantClass2("F:/GD/test_subject/", "LeapTest2");
+		tL2.LoaderMutantClass2("F:/GD/test_subject/", "LeapTest2",0,0);
 		// test without using hotswap, so Class is old version.
 		// C_after c = new C_after();
 		// c.m();

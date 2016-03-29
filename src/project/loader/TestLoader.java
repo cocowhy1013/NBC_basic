@@ -74,25 +74,27 @@ public class TestLoader {
 		System.out.println("loader successfully");
 	}
 
-	public void LoaderMutantClass2(String path, String testfile) {
+	public void LoaderMutantClass2(String path, String testfile,int k,int time) {
 		// path: path of class file (include mutation and other file)
 		// ------class files
 		// test file: test file for project, method: test() to test project
-		System.out.println("loader2:"+path+"->"+testfile);
+
+
+		//System.out.println("loader2:"+path+"->"+testfile);
 		SelfClassLoader loader1 = new SelfClassLoader("loader1");
 		loader1.setPath(path);
 		FileUnderRoot fRoot = new FileUnderRoot();
 		fRoot.getFileUnderRoot(path);
 		ArrayList<String> list = fRoot.getArrayFiles();
 		for (String names : list) {
-			System.out.println("name before:!!!" + names);
+			//System.out.println("name before:!!!" + names);
 			names = FileUtil.returnFileName(names);
-			System.out.println("name:!!!" + names);
+			//System.out.println("name:!!!" + names);
 			if (!names.matches(testfile)) {
 				try {
-					System.out.println("load+"+names);
+					//System.out.println("load+"+names);
 					loader1.loadClass(names.replaceAll(".class", ""));
-					System.out.println("load over");
+					//System.out.println("load over");
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -121,7 +123,8 @@ public class TestLoader {
 		// C_after2.getMethod(name, parameterTypes)
 		Method m1 = null;
 		try {
-			m1 = foo.getClass().getMethod("test", new Class[] {});// invoke
+			//m1 = foo.getClass().getMethod("test", new Class[] {});// invoke
+			m1 = foo.getClass().getMethod("test",int.class,int.class);// invoke
 																	// test()
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
@@ -131,7 +134,8 @@ public class TestLoader {
 			e.printStackTrace();
 		}
 		try {
-			m1.invoke(foo, new Object[] {}); // invoke test()
+			//m1.invoke(foo, new Object[] {}); // invoke test()
+			m1.invoke(foo, k,time); // invoke test()
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

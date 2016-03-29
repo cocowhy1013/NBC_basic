@@ -99,7 +99,7 @@ public class Main_Modified {
         return result[0];
         //eva.crossValidation();
     }
-    public static double[] modifyMain(String trainFile, String testFile, double possibility, int number) throws IOException{
+    public static double[] modifyMain(String trainFile, String testFile, double possibility, int number,int k) throws IOException{
         Scanner scan = new Scanner(new File(testFile));
         ArrayList<Double> result = new ArrayList<Double>();
         String line = scan.nextLine();//remove first line
@@ -107,7 +107,7 @@ public class Main_Modified {
         while(scan.hasNextLine()){
             line=scan.nextLine();
             DataModifier modifier = new DataModifier();
-            String targetFile = modifier.modifyRandomStep(trainFile,line, possibility,number);
+            String targetFile = modifier.modifyRandomStep(trainFile,line, possibility,number,k);
             //System.out.println("-----"+);
             result.add(processSingleTestMain(targetFile,line));
         }
@@ -115,23 +115,41 @@ public class Main_Modified {
         return arrayFromArrayList(result);
 
     }
-    public static void main(String [] args) throws IOException{
+    public static void test(int k,int sumtime){
 
 
-        String resultFile = "dataset\\1\\1train_result.txt";
+        String resultFile = "dataset\\1\\1train_result_"+k+".txt";
         String trainFile = "dataset\\1\\1train.txt";
         String testFile = "dataset\\1\\1test.txt";
-        //System.out.println(Arrays.toString(processMain(trainFile, testFile)));
-        PrintWriter pw = new PrintWriter(new File(resultFile));
+        String root = "dataset\\1\\";
 
-        int modify_times = 100;
+
+        //System.out.println(Arrays.toString(processMain(trainFile, testFile)));
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new File(resultFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int modify_times = sumtime;
         for(int time = 0; time < modify_times; time ++){
-            double[] result1 = modifyMain(trainFile,testFile,0.9,time);
+            double[] result1 = new double[0];
+            try {
+                result1 = modifyMain(trainFile,testFile,0.9,time,k);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             //System.out.println("length1:"+result1.length);
             for(int i=0;i<result1.length;i++)
                 ;//System.out.println(result1[i]);
 
-            double [] result2 = processMain(trainFile,testFile);
+            double [] result2 = new double[0];
+            try {
+                result2 = processMain(trainFile,testFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             //System.out.println("length2:"+result2.length);
             for(int i=0;i<result2.length;i++)
                 ;//System.out.println(result2[i]);
@@ -148,14 +166,19 @@ public class Main_Modified {
                 }
                 //System.out.println("Does it satisfy MR? --- "+!isViolated);
                 //System.out.println("Continue? --- "+!isViolated);
-                System.out.println("file:modify_"+time+" Result: "+!isViolated);
+                //System.out.println("file:modify_"+time+" Result: "+!isViolated);
+               // if(!isViolated)
+                    System.out.println("file:"+resultFile+" Result: "+!isViolated);
                 pw.println("file:modify_"+time+" Result: "+!isViolated);
-            }
-        }
+    }
+}
         pw.close();
         System.out.println("Finish! ");
         //processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
         //double a = processSingleTestMain("dataset\\1train.txt","1,4,5,0,4,7,5,5,2");
         //System.out.println(a);
     }
+   // public static void main(String[] args){
+   //     test(0);
+   // }
 }

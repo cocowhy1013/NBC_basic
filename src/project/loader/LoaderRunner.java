@@ -36,7 +36,7 @@ public class LoaderRunner {
         for (int i = 0; i < file_names.length; i++) {
             FileUtil.copyFile(oracle_root + file_names[i].replaceAll(".java", ".class"), test_root
                     + file_names[i].replaceAll(".java", ".class"));
-            System.out.println(file_names[i]);
+            //System.out.println(file_names[i]);
         }
         FileUtil.copyFile(test_file + test_filename + ".class", test_root
                 + test_filename + ".class");
@@ -48,7 +48,8 @@ public class LoaderRunner {
         //System.out.println("haha");
         TestLoader tL1 = new TestLoader();
         //tL.LoaderMutantClass(test_root,"Test");
-        tL1.LoaderMutantClass2(test_root, test_filename);
+        //int[] param = {0};
+        tL1.LoaderMutantClass2(test_root, test_filename,0,1000);
         //FileUtil.backSystemOut();
         //FileUtil.deleteFileAndFolder(test_path);
         long t2 = new Date().getTime();
@@ -94,6 +95,7 @@ public class LoaderRunner {
             // tL.LoaderMutantClass(test_root,"Test");
             // tL2.LoaderMutantClass2("F:/GD/test_subject/", test_filename);
 
+            final int finalNumber = number;
             Thread service = new Thread() {
                 @Override
                 public void run() {
@@ -102,7 +104,7 @@ public class LoaderRunner {
                         TestLoader tL2 = new TestLoader();
                         // tL.LoaderMutantClass(test_root,"Test");
                         tL2.LoaderMutantClass2("E:\\Mutation\\loader\\test_subject\\",
-                                test_filename);
+                                test_filename, finalNumber,500);
 
                         System.out.println("---run end---");
                     } catch (Exception e) {

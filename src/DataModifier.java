@@ -50,10 +50,10 @@ public class DataModifier {
         return path.replace(".txt", "_modify"+modify_time+".txt");
 		
 	}
-	public String modifyRandom(String path, double[][] attributes, double[] labels, double possibility, int modify_time) throws IOException{
+	public String modifyRandom(String path, double[][] attributes, double[] labels, double possibility, int modify_time, int k) throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader(path));
         //String[] instanceBefore = reader.readLine().split(","); // attributes info
-		PrintWriter pw = new PrintWriter(new File(path.replace(".txt", "_modify"+modify_time+".txt")));
+		PrintWriter pw = new PrintWriter(new File(path.replace(".txt", "_modify"+modify_time+"_"+k+".txt")));
 
 		String line = reader.readLine();
 		pw.println(line);
@@ -98,7 +98,7 @@ public class DataModifier {
         reader.close();
         pw.close();
 
-        return path.replace(".txt", "_modify"+modify_time+".txt");
+        return path.replace(".txt", "_modify"+modify_time+"_"+k+".txt");
 		
 	}
 	
@@ -124,7 +124,7 @@ public class DataModifier {
 		else 
 			return false;
 	}
-	public String modifyRandomStep(String trainFilePath, String testLine,double possibility, int modify_time) 
+	public String modifyRandomStep(String trainFilePath, String testLine,double possibility, int modify_time,int k)
 			throws IOException{
 		String[] parts = testLine.split(",");
 		double[][] attribute = new double[1][parts.length-1];
@@ -136,13 +136,13 @@ public class DataModifier {
 
 		DataModifier modifier = new DataModifier();
 		return modifier.modifyRandom(trainFilePath,
-				attribute, label, possibility,modify_time);
+				attribute, label, possibility,modify_time,k);
 	}
 	public static void main(String[] args) throws IOException{
 		double[][] attribute = {{3,2,4,1,4,5,0,4,3}};
 		double[] label = {0};
 		//1,2,3,4,5,6,7,0
 		DataModifier modifier = new DataModifier();
-		modifier.modifyRandom("train.txt",attribute, label, 0.1,1);
+		modifier.modifyRandom("train.txt",attribute, label, 0.1,1,1);
 	}
 }
