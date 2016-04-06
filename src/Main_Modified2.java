@@ -117,9 +117,9 @@ public class Main_Modified2 {
     public static void test(int k,int sumtime){
 
 
-        String resultFile = "dataset\\1train_result_"+k+".txt";
-        String trainFile = "dataset\\1train.txt";
-        String testFile = "dataset\\1test.txt";
+        String resultFile = "dataset3\\3\\3train_result_"+k+".txt";
+        String trainFile = "dataset3\\3\\3train.txt";
+        String testFile = "dataset3\\3\\3test.txt";
         String root = "dataset\\";
 
 
@@ -166,9 +166,15 @@ public class Main_Modified2 {
                 //System.out.println("Does it satisfy MR? --- "+!isViolated);
                 //System.out.println("Continue? --- "+!isViolated);
                 //System.out.println("file:modify_"+time+" Result: "+!isViolated);
-                // if(!isViolated)
-                System.out.println("file:"+resultFile+" Result: "+!isViolated);
+                if(isViolated)
+                    System.out.println("file:"+resultFile+" Result: "+!isViolated);
                 pw.println("file:modify_"+time+" Result: "+!isViolated);
+            }
+            if(!isViolated){
+                File file = new File("dataset3\\3\\3train_modify"+time+"_"+k+".txt");
+                if(file.exists())
+                    file.delete();//file.deleteOnExit();
+                ;//System.out.println("Fail to delete "+file.getName());
             }
         }
         pw.close();

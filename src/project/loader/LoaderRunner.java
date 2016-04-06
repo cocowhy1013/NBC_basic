@@ -13,23 +13,21 @@ import java.util.Map;
 public class LoaderRunner {
     public static void main(String[] args) throws Exception {
         //String mutant_root = "F:/mutation/";
-        String test_root = "E:\\Mutation\\loader\\test_subject\\";
-        String test_file = "E:\\Mutation\\loader\\test_file\\";
+        String test_root = "E:\\Mutation\\loader2\\test_subject\\";
+        String test_file = "E:\\Mutation\\loader2\\test_file\\";
         //String subject_root = "F:/GD/actual_subject/";
-        String oracle_root = "E:\\Mutation\\loader\\subject\\";
+        String oracle_root = "E:\\Mutation\\loader2\\subject\\";
         RunMuJava run = new RunMuJava();
         String[] file_names = FileUtil.returnSonSimpleClassFileNamesExceptWHY(oracle_root);
         //{ "ArrayUtils.java","HeapSort.java"  };
         // String[] class_ops = {"IHI"};
         // String[] traditional_ops = {"AORB","AOIS"};
-        final String test_filename = "Main_Modified";
-        String name1 = "NaiveBayes_Modified";//method that is mutated using Mujava
+        final String test_filename = "Main_Modified2";
+        String name1 = "NaiveBayes_Modified2";//method that is mutated using Mujava
+        String name2 = "NaiveBayes_Modified2$Elements";
         //final String test_helpfilename = "AWHY_testhelp";
 
-        String oracle_path = "E:\\Mutation\\loader\\oracle_out.txt";
-        String test_path = "E:\\Mutation\\loader\\test_out.txt";
-
-
+        final int MR_times = 500;
 
         // get txt oracle for comparing later
         //FileUtil.setSystemOut(oracle_path);
@@ -49,12 +47,12 @@ public class LoaderRunner {
         TestLoader tL1 = new TestLoader();
         //tL.LoaderMutantClass(test_root,"Test");
         //int[] param = {0};
-        tL1.LoaderMutantClass2(test_root, test_filename,0,500);
+        tL1.LoaderMutantClass2(test_root, test_filename,0,MR_times);
         //FileUtil.backSystemOut();
         //FileUtil.deleteFileAndFolder(test_path);
         long t2 = new Date().getTime();
         long time_offset = t2 - t1;
-        time_offset = 370236;
+        time_offset =438838;
         System.out.println("Time offset: " + (t2 - t1));
         System.out.println(file_names.length + file_names[0]);
 
@@ -76,18 +74,29 @@ public class LoaderRunner {
                     .println("number:"+number);
             System.out
                     .println("=============================================2");
-
-            if(number>=14||number<=9)
+            if(number<9)
                 continue;
+            if(number==2||number==26||number==51||number==52)
+                continue;
+            //if(number<=52)
+            //    continue;
+           /* if(number<=9)
+                continue;
+            if(number==14||number==16||number==17||number==19||number==23)
+                continue;
+            if(number==29||number==30||number==31||number==32||number==34)
+                continue;*/
             FileUtil.deleteFolderContent(test_root);
             for (int i = 0; i < file_names.length; i++) {
-                if(file_names[i].compareTo(name1)!=0) {
+                if(file_names[i].compareTo(name1)!=0&&file_names[i].compareTo(name2)!=0) {
                     FileUtil.copyFile(oracle_root + file_names[i].replaceAll(".java", ".class"), test_root
                             + file_names[i].replaceAll(".java", ".class"));
                 }
             }
             FileUtil.copyFile(entry.getValue(),
                     test_root + name1+".class");
+            FileUtil.copyFile(entry.getValue().replace(name1,name2),
+                    test_root + name2+".class");
 
             FileUtil.copyFile(test_file + test_filename + ".class",
                     test_root + test_filename + ".class");
@@ -109,8 +118,8 @@ public class LoaderRunner {
                     try {
                         TestLoader tL2 = new TestLoader();
                         // tL.LoaderMutantClass(test_root,"Test");
-                        tL2.LoaderMutantClass2("E:\\Mutation\\loader\\test_subject\\",
-                                test_filename, finalNumber,500);
+                        tL2.LoaderMutantClass2("E:\\Mutation\\loader2\\test_subject\\",
+                                test_filename, finalNumber,MR_times);
 
                         System.out.println("---run end---");
                     } catch (Exception e) {
@@ -127,8 +136,8 @@ public class LoaderRunner {
             long time = time_offset * 10;
             while (service.isAlive() && time > 0) {
                 //System.out.println("sleep 1000" + service.isAlive());
-                Thread.sleep(100);
-                time = time - 100;
+                Thread.sleep(1000);
+                time = time - 1000;
             }
 
             if (service.isAlive() == true) {
@@ -140,108 +149,7 @@ public class LoaderRunner {
             }
             //FileUtil.backSystemOut();
         }
-        /*for (int i = 0; i < file_names.length; i++) {//change to i = 0 ;!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            System.out.println(file_names.length);
-            FileUtil.deleteFolderContent(test_root);
-            Thread.sleep(2000);
-            //System.exit(0);
-            //System.out.println(file_names.length);
-            //System.out.println(i);
 
-
-            GetMutantsClass m = new GetMutantsClass();
-            //System.out.println("F:/GD/Presentation/"
-            //		+ file_names[i].replaceAll(".class", ""));
-            String name1 = file_names[i].replaceAll(".java", "");
-            name1 = name1.replaceAll(".class", "");
-            m.getMutantsClassSourceIn("F:/GD/Presentation/"
-                    + name1 + "");
-            Map<String, String> map = m.get_allpath();
-            // gen.generator("F:/mutation/result/isLeapYear/traditional_mutants/int_isLeap(int)/AOIS_1/isLeapYear.class","F:/GD/test_subject/isLeapYear.class");
-            // gen.generatorAllFiles(entry.getValue(),subject_root,test_root);
-            // //!!!!!!!!!!!!!
-            int number = 1;
-            for (Map.Entry<String, String> entry : map.entrySet()) {
-
-                String op_map_now = entry.getKey();
-
-                number++;
-                if (number > 234 || number < 233)// number == 24, dead code
-                    // circle!
-                    continue;
-                System.out.println("Processing file:");
-                System.out.println(entry.getValue()
-                        + "=======================================");
-                // if(number!=24)
-
-				//GeneratorInstrument gen = new GeneratorInstrument();
-				// gen.initInstrumentValue();
-				//System.out.println(entry.getValue());
-				//gen.generatorAllFiles(entry.getValue(), oracle_root, test_root);
-                System.out
-                        .println("=============================================2");
-                FileUtil.copyFile(entry.getValue(),
-                        test_root + "Otcas.class");
-
-                FileUtil.copyFile(test_file + test_filename + ".class",
-                        test_root + test_filename + ".class");
-                //FileUtil.copyFile(test_file + test_helpfilename + ".class", test_root
-                //		+ test_helpfilename + ".class");
-
-                System.out
-                        .println("=============================================3");
-                Thread.sleep(3000);
-
-                FileUtil.setSystemOut(test_path);
-
-                // TestLoader tL2 = new TestLoader();
-                // tL.LoaderMutantClass(test_root,"Test");
-                // tL2.LoaderMutantClass2("F:/GD/test_subject/", test_filename);
-
-                Thread service = new Thread() {
-                    @Override
-                    public void run() {
-                        System.out.println("---run start---");
-                        try {
-                            TestLoader tL2 = new TestLoader();
-                            // tL.LoaderMutantClass(test_root,"Test");
-                            tL2.LoaderMutantClass2("E:\\Mutation\\loader\\test_subject\\",
-                                    test_filename);
-
-                            System.out.println("---run end---");
-                        } catch (Exception e) {
-                            System.out.println("---run interrupted---");
-
-                            // e.printStackTrace();
-                            // FileUtil.backSystemOut();
-                        }
-                        System.out.println("---run end---");
-
-                    }
-                };
-                service.start();
-                long time = time_offset * 10;
-                while (service.isAlive() && time > 0) {
-                    System.out.println("sleep 1000" + service.isAlive());
-                    Thread.sleep(10);
-                    time = time - 10;
-                }
-
-                if (service.isAlive() == true) {
-
-                    service.stop();
-                    Thread.sleep(3000);
-                    FileUtil.backSystemOut();
-                    continue;
-                }
-                FileUtil.backSystemOut();
-                System.out.println("Sleep over!" + service.isAlive());
-                System.out.println("Sleep");
-                System.out.println("Successful!");
-
-            }
-
-        }*/
         //caculate_result.close();
         System.out.println("Success!!!");
     }

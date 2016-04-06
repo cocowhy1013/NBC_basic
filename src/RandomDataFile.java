@@ -31,8 +31,8 @@ public class RandomDataFile {
 		pw.close();
 	} 
 	public static void main(String[] args) throws FileNotFoundException{
-		randomFile("1train.txt",900);
-		randomFile("1test.txt",100);
+		randomFile("3train.txt",3000);
+		randomFile("3test.txt",300);
 	}
 	
 }
