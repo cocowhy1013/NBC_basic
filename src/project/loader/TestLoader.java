@@ -74,7 +74,7 @@ public class TestLoader {
 		System.out.println("loader successfully");
 	}
 
-	public void LoaderMutantClass2(String path, String testfile,int k,int time) {
+	public void LoaderMutantClass2(String path, String testfile,int k,int time,int dataset_num,int loader_num) {
 		// path: path of class file (include mutation and other file)
 		// ------class files
 		// test file: test file for project, method: test() to test project
@@ -124,7 +124,7 @@ public class TestLoader {
 		Method m1 = null;
 		try {
 			//m1 = foo.getClass().getMethod("test", new Class[] {});// invoke
-			m1 = foo.getClass().getMethod("test",int.class,int.class);// invoke
+			m1 = foo.getClass().getMethod("test",int.class,int.class,int.class,int.class);// invoke
 																	// test()
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
@@ -135,7 +135,7 @@ public class TestLoader {
 		}
 		try {
 			//m1.invoke(foo, new Object[] {}); // invoke test()
-			m1.invoke(foo, k,time); // invoke test()
+			m1.invoke(foo, k,time,dataset_num,loader_num); // invoke test()
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

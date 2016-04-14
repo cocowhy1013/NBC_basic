@@ -10,23 +10,23 @@ import java.util.Map;
 /**
  * Created by Coco on 2016/3/28.
  */
-public class LoaderRunner {
+public class LoaderRunner1 {
     public static void main(String[] args) throws Exception {
         //String mutant_root = "F:/mutation/";
-        final int dataset_num = 4;
-        final int loader_num = 2;
-        String test_root = "E:\\Mutation\\loader2\\test_subject\\";
-        String test_file = "E:\\Mutation\\loader2\\test_file\\";
+        final int dataset_num = 3;
+        final int loader_num = 1;
+        String test_root = "E:\\Mutation\\loader1\\test_subject\\";
+        String test_file = "E:\\Mutation\\loader1\\test_file\\";
         //String subject_root = "F:/GD/actual_subject/";
-        String oracle_root = "E:\\Mutation\\loader2\\subject\\";
+        String oracle_root = "E:\\Mutation\\loader1\\subject\\";
         RunMuJava run = new RunMuJava();
         String[] file_names = FileUtil.returnSonSimpleClassFileNamesExceptWHY(oracle_root);
         //{ "ArrayUtils.java","HeapSort.java"  };
         // String[] class_ops = {"IHI"};
         // String[] traditional_ops = {"AORB","AOIS"};
-        final String test_filename = "Main_Modified2";
-        String name1 = "NaiveBayes_Modified2";//method that is mutated using Mujava
-        String name2 = "NaiveBayes_Modified2$Elements";
+        final String test_filename = "Main_Modified";
+        String name1 = "NaiveBayes_Modified";//method that is mutated using Mujava
+        //String name2 = "NaiveBayes_Modified2$Elements";
         //final String test_helpfilename = "AWHY_testhelp";
 
 
@@ -77,29 +77,29 @@ public class LoaderRunner {
                     .println("number:"+number);
             System.out
                     .println("=============================================2");
-            if(number<46)
-                continue;
-            if(number==2||number==26||number==46||number==51||number==52)
-                continue;
+            //if(number<46)
+            //    continue;
+            //if(number==2||number==26||number==46||number==51||number==52)
+            //    continue;
             //if(number<=52)
             //    continue;
-           /* if(number<=9)
+            if(number<21)
                 continue;
-            if(number==14||number==16||number==17||number==19||number==23)
+           /* if(number==14||number==16||number==17||number==19||number==23)
                 continue;
             if(number==29||number==30||number==31||number==32||number==34)
                 continue;*/
             FileUtil.deleteFolderContent(test_root);
             for (int i = 0; i < file_names.length; i++) {
-                if(file_names[i].compareTo(name1)!=0&&file_names[i].compareTo(name2)!=0) {
+                if(file_names[i].compareTo(name1)!=0){//&&file_names[i].compareTo(name2)!=0) {
                     FileUtil.copyFile(oracle_root + file_names[i].replaceAll(".java", ".class"), test_root
                             + file_names[i].replaceAll(".java", ".class"));
                 }
             }
             FileUtil.copyFile(entry.getValue(),
                     test_root + name1+".class");
-            FileUtil.copyFile(entry.getValue().replace(name1,name2),
-                    test_root + name2+".class");
+            //FileUtil.copyFile(entry.getValue().replace(name1,name2),
+            //        test_root + name2+".class");
 
             FileUtil.copyFile(test_file + test_filename + ".class",
                     test_root + test_filename + ".class");

@@ -115,13 +115,13 @@ public class Main_Modified {
         return arrayFromArrayList(result);
 
     }
-    public static void test(int k,int sumtime){
+    public static void test(int k,int sumtime,int dataset_number,int loadernum){
 
 
-        String resultFile = "dataset\\2\\2train_result_"+k+".txt";
-        String trainFile = "dataset\\2\\2train.txt";
-        String testFile = "dataset\\2\\2test.txt";
-        String root = "dataset\\2\\";
+        String resultFile = "dataset\\"+dataset_number+"\\loader"+loadernum+"\\"+dataset_number+"train_result_"+k+".txt";
+        String trainFile = "dataset\\"+dataset_number+"\\loader"+loadernum+"\\"+dataset_number+"train.txt";
+        String testFile = "dataset\\"+dataset_number+"\\loader"+loadernum+"\\"+dataset_number+"test.txt";
+        String root = "dataset\\"+dataset_number+"\\loader"+loadernum+"\\";
 
 
         //System.out.println(Arrays.toString(processMain(trainFile, testFile)));
@@ -172,7 +172,7 @@ public class Main_Modified {
                 pw.println("file:modify_"+time+" Result: "+!isViolated);
                 }
             if(!isViolated){
-                File file = new File("dataset\\2\\2train_modify"+time+"_"+k+".txt");
+                File file = new File("dataset\\"+dataset_number+"\\loader"+loadernum+"\\"+dataset_number+"train_modify"+time+"_"+k+".txt");
                 if(file.exists())
                     file.delete();
                     ;//System.out.println("Fail to delete "+file.getName());

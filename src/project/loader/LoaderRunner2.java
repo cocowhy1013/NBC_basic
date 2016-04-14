@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by Coco on 2016/3/28.
  */
-public class LoaderRunner {
+public class LoaderRunner2 {
     public static void main(String[] args) throws Exception {
         //String mutant_root = "F:/mutation/";
         final int dataset_num = 4;
@@ -77,9 +77,9 @@ public class LoaderRunner {
                     .println("number:"+number);
             System.out
                     .println("=============================================2");
-            if(number<46)
+            if(number<39)
                 continue;
-            if(number==2||number==26||number==46||number==51||number==52)
+            if(number==2||number==26||number==28||number==46||number==51||number==52)
                 continue;
             //if(number<=52)
             //    continue;
