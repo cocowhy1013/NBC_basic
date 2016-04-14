@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <output url="file:///production/NBC_basic" />
-    <output-test url="file:///test/NBC_basic" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -12,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/asm-3.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/asm-3.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -21,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/junit.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/junit.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -30,7 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/jxl.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/jxl.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -39,7 +37,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/openjava.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/mujava.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -48,7 +46,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/org.hamcrest.core_1.1.0.v20090501071000.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/openjava.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -57,18 +55,27 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../MuJava/tools.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/org.hamcrest.core_1.1.0.v20090501071000.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Library/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../MuJava/tools.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/tools.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../LIBS/commons-io-2.4/commons-io-2.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Library/commons-io-2.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
