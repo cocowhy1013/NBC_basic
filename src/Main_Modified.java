@@ -107,7 +107,7 @@ public class Main_Modified {
         while(scan.hasNextLine()){
             line=scan.nextLine();
             DataModifier modifier = new DataModifier();
-            String targetFile = modifier.modifyRandomStep(trainFile,line, possibility,number,k);
+            String targetFile = modifier.modifyRandomStep(trainFile,line, possibility,number,k,"");
             //System.out.println("-----"+);
             result.add(processSingleTestMain(targetFile,line));
         }

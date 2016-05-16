@@ -47,15 +47,15 @@ public class LoaderRunner1 {
 
         long t1 = new Date().getTime();
         //System.out.println("haha");
-        TestLoader tL1 = new TestLoader();
+        //TestLoader tL1 = new TestLoader();
         //tL.LoaderMutantClass(test_root,"Test");
         //int[] param = {0};
-        tL1.LoaderMutantClass2(test_root, test_filename,0,MR_times,dataset_num,loader_num);
+        //tL1.LoaderMutantClass2(test_root, test_filename,0,MR_times,dataset_num,loader_num);
         //FileUtil.backSystemOut();
         //FileUtil.deleteFileAndFolder(test_path);
         long t2 = new Date().getTime();
         long time_offset = t2 - t1;
-        //time_offset =438838;
+        time_offset = 2520073;
         System.out.println("Time offset: " + (t2 - t1));
         System.out.println(file_names.length + file_names[0]);
 
@@ -76,19 +76,30 @@ public class LoaderRunner1 {
             System.out
                     .println("number:"+number);
             System.out
-                    .println("=============================================2");
-            //if(number<46)
-            //    continue;
+                    .println("=============================================2"+op_map_now);
+            if(op_map_now.equalsIgnoreCase("JTI_2")||op_map_now.equalsIgnoreCase("JTI_3"))
+                continue;
+            if(op_map_now.equalsIgnoreCase("JTD_2")||op_map_now.equalsIgnoreCase("JTD_3"))
+                continue;
+            if(op_map_now.equalsIgnoreCase("AORS_8")||op_map_now.equalsIgnoreCase("AORS_2"))
+                continue;
+            if(op_map_now.equalsIgnoreCase("AORS_1")||op_map_now.equalsIgnoreCase("AORS_7"))
+                continue;
+            if(op_map_now.equalsIgnoreCase("AORS_6")||op_map_now.equalsIgnoreCase("AORS_4"))
+                continue;
+
+            if(number<=7)
+                continue;
             //if(number==2||number==26||number==46||number==51||number==52)
             //    continue;
             //if(number<=52)
             //    continue;
-            if(number<21)
-                continue;
-           /* if(number==14||number==16||number==17||number==19||number==23)
-                continue;
-            if(number==29||number==30||number==31||number==32||number==34)
-                continue;*/
+            //if(number<30)
+            //    continue;
+            //if(number==14||number==16||number==17||number==19||number==23)
+            //    continue;
+            //if(number==29||number==30||number==31||number==32||number==34)
+            //    continue;
             FileUtil.deleteFolderContent(test_root);
             for (int i = 0; i < file_names.length; i++) {
                 if(file_names[i].compareTo(name1)!=0){//&&file_names[i].compareTo(name2)!=0) {
@@ -107,12 +118,6 @@ public class LoaderRunner1 {
                     .println("=============================================3");
             Thread.sleep(3000);
 
-            //FileUtil.setSystemOut(test_path);
-
-            // TestLoader tL2 = new TestLoader();
-            // tL.LoaderMutantClass(test_root,"Test");
-            // tL2.LoaderMutantClass2("F:/GD/test_subject/", test_filename);
-
             final int finalNumber = number;
             Thread service = new Thread() {
                 @Override
@@ -121,14 +126,11 @@ public class LoaderRunner1 {
                     try {
                         TestLoader tL2 = new TestLoader();
                         // tL.LoaderMutantClass(test_root,"Test");
-                        tL2.LoaderMutantClass2("E:\\Mutation\\loader2\\test_subject\\",
+                        tL2.LoaderMutantClass2("E:\\Mutation\\loader1\\test_subject\\",
                                 test_filename, finalNumber,MR_times,dataset_num,loader_num);
-
                         System.out.println("---run end---");
                     } catch (Exception e) {
                         System.out.println("---run interrupted---");
-
-
                         // e.printStackTrace();
                         // FileUtil.backSystemOut();
 

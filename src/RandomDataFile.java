@@ -13,9 +13,9 @@ public class RandomDataFile {
 		String line = "";
 		for(int k = 0; k < attribute+1;k++){
 			if (k != attribute)
-				line = line + 1 + ",";
+				line = line + k + ",";
 			else 
-				line = line + 1;
+				line = line + k;
 		}
 		pw.println(line);
 		for(int i = 0; i < instance; i++){
@@ -31,8 +31,8 @@ public class RandomDataFile {
 		pw.close();
 	} 
 	public static void main(String[] args) throws FileNotFoundException{
-		randomFile("4train.txt",300);
-		randomFile("4test.txt",100);
+		randomFile("E:\\MT\\dataset\\trainCSV_30.txt",30);
+		randomFile("E:\\MT\\dataset\\testCSV_30.txt",1);
 	}
 	
 }
